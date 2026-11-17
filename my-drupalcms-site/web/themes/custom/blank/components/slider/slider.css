@@ -1,0 +1,115 @@
+.slider {
+  --slider-gap: 1rem;
+  --slider-radius: 20px;
+  --slider-control-size: 2.5rem;
+  --slider-control-bg: #fff;
+  --slider-control-color: #1a73e8;
+  --slider-control-border: #ccc;
+  --slider-dot-size: 0.75rem;
+  --slider-dot-color: #ccc;
+  --slider-dot-active-color: #1a73e8;
+  --slider-focus-color: #005fcc;
+
+  position: relative;
+}
+
+/* Track: horizontal scroll-snap container (works without JS). */
+.slider__track {
+  display: flex;
+  gap: var(--slider-gap);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  border-radius: var(--slider-radius);
+}
+
+.slider__track::-webkit-scrollbar {
+  display: none;
+}
+
+.slider__track:focus-visible {
+  outline: 3px solid var(--slider-focus-color);
+  outline-offset: 3px;
+}
+
+/* Each slide fills the track width. */
+.slider__track .slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* Controls (revealed by slider.js). */
+.slider__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.slider__controls[hidden] {
+  display: none;
+}
+
+.slider__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--slider-control-size);
+  height: var(--slider-control-size);
+  padding: 0;
+  border: 1px solid var(--slider-control-border);
+  border-radius: 50%;
+  background: var(--slider-control-bg);
+  color: var(--slider-control-color);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.slider__button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.slider__button:focus-visible,
+.slider__dot:focus-visible {
+  outline: 3px solid var(--slider-focus-color);
+  outline-offset: 2px;
+}
+
+.slider__dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.slider__dot {
+  width: var(--slider-dot-size);
+  height: var(--slider-dot-size);
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--slider-dot-color);
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.slider__dot[aria-current="true"] {
+  background: var(--slider-dot-active-color);
+  transform: scale(1.2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slider__track {
+    scroll-behavior: auto;
+  }
+
+  .slider__button,
+  .slider__dot {
+    transition: none;
+  }
+}

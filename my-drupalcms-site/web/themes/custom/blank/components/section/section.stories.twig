@@ -1,0 +1,44 @@
+{% stories section with {
+    title: 'Components/Section',
+    tags: ['autodocs'],
+    parameters: {
+        docs: {
+        description: {
+            component: 'Section component with optional heading/intro above a responsive grid of components.'
+        }
+        }
+    },
+    argTypes: {
+        heading: { control: 'text', description: 'The heading text for the section.', table: { category: 'Content' } },
+        intro: { control: 'text', description: 'The introductory text for the section.', table: { category: 'Content' } },
+        columns: { control: 'select', options: ['1', '2', '3', '4'], description: 'The number of columns in the section grid.', table: { category: 'Layout' } },
+        background: { control: 'select', options: ['none', 'muted', 'accent'], description: 'The background style for the section.', table: { category: 'Appearance' } },
+        align: { control: 'select', options: ['start', 'center'], description: 'The alignment of the section content.', table: { category: 'Layout' } }
+    }
+    } %}
+
+    {% story default with {
+        name: 'Default',
+        args: {
+            heading: 'Section Heading',
+            intro: 'This is an introductory text for the section.',
+            columns: '3',
+            background: 'none',
+            align: 'start'
+        }
+    } %}
+        {% include 'blank:section' with { heading, intro, columns: columns ~ '', background, align } only %}
+    {% endstory %}
+    {%  story alternate with {
+        name: 'Alternate',
+        args: {
+            heading: 'Alternate Section Heading',
+            intro: 'This is an alternate introductory text for the section.',
+            columns: '2',
+            background: 'muted',
+            align: 'center'
+        }
+    } %}
+        {% include 'blank:section' with { heading, intro, columns: columns ~ '', background, align } only %}
+    {% endstory %}
+{% endstories %}

@@ -1,0 +1,33 @@
+{#
+/**
+ * @file
+ * Card component.
+ *
+ * Available variables:
+ * - header: (string, required) The card title.
+ * - heading_level: (string) h2, h3 or h4. Defaults to h2.
+ * - paragraph: (string) Supporting text.
+ * - image: (object) { src, alt, width, height }.
+ * - attributes: Drupal Attribute object for the wrapper element.
+ */
+#}
+{% set heading_tag = heading_level in ['h2', 'h3', 'h4'] ? heading_level : 'h2' %}
+
+<article {{ attributes.addClass('card') }}>
+  {% if image.src %}
+    <img
+      class="card__image"
+      src="{{ image.src }}"
+      alt="{{ image.alt|default('') }}"
+      loading="lazy"
+    >
+  {% endif %}
+  <div class="card__content">
+    {% if header %}
+      <{{ heading_tag }} class="card__header">{{ header }}</{{ heading_tag }}>
+    {% endif %}
+    {% if paragraph %}
+      <p class="card__paragraph">{{ paragraph }}</p>
+    {% endif %}
+  </div>
+</article>

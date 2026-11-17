@@ -1,0 +1,46 @@
+{#
+  Storybook stories for the Card component (drupal/storybook module).
+  Compile to card.stories.json with: ddev drush storybook:generate-all-stories
+#}
+{% stories card with {
+  title: 'Components/Card',
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: 'A content card with an optional image, a heading and a short paragraph. Rendered by Drupal from `blank:card`. Click the paragraph to toggle its highlighted state.'
+      }
+    }
+  },
+  argTypes: {
+    header: { control: 'text', description: 'Main title of the card (required).', table: { category: 'Content' } },
+    heading_level: { control: 'select', options: ['h2', 'h3', 'h4'], description: 'HTML heading element for the title.', table: { category: 'Content', defaultValue: { summary: 'h2' } } },
+    paragraph: { control: 'text', description: 'Supporting text under the heading.', table: { category: 'Content' } },
+    image: { control: 'object', description: 'Image object: { src, alt, width, height }.', table: { category: 'Media' } }
+  }
+} %}
+
+  {% story default with {
+    name: 'Default',
+    args: {
+      header: 'Get 25% off today only',
+      heading_level: 'h2',
+      paragraph: 'Upgrade your setup with our best-selling gear.'
+    }
+  } %}
+    {% include 'blank:card' with { header, heading_level, paragraph } only %}
+  {% endstory %}
+
+  {% story with_image with {
+    name: 'With image',
+    args: {
+      header: 'New arrivals',
+      heading_level: 'h3',
+      paragraph: 'Fresh picks for the season, hand-selected by our team.',
+      image: { src: 'https://placehold.co/640x360.png', alt: 'Placeholder product image', width: 640, height: 360 }
+    }
+  } %}
+    {% include 'blank:card' with { header, heading_level, paragraph, image } only %}
+  {% endstory %}
+
+{% endstories %}

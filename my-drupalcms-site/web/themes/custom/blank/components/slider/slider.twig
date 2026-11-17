@@ -1,0 +1,34 @@
+{#
+/**
+ * @file
+ * Slider component.
+ *
+ * Slots:
+ * - slides: Slide components (blank:slide).
+ *
+ * The track scrolls with CSS scroll-snap; slider.js adds the previous/next
+ * buttons, dot navigation, keyboard support and the active slide state.
+ */
+#}
+{% set slider_id = 'slider-' ~ random() %}
+<section
+  {{ attributes.addClass('slider') }}
+  aria-roledescription="carousel"
+  aria-label="{{ 'Slider'|t }}"
+>
+  <div class="slider__track" id="{{ slider_id }}-track" tabindex="0" aria-live="polite">
+    {% block slides %}{% endblock %}
+  </div>
+
+  <div class="slider__controls" hidden>
+    <button type="button" class="slider__button slider__button--prev" aria-controls="{{ slider_id }}-track">
+      <span class="visually-hidden">{{ 'Previous slide'|t }}</span>
+      <span aria-hidden="true">&#8249;</span>
+    </button>
+    <div class="slider__dots" role="group" aria-label="{{ 'Choose slide'|t }}"></div>
+    <button type="button" class="slider__button slider__button--next" aria-controls="{{ slider_id }}-track">
+      <span class="visually-hidden">{{ 'Next slide'|t }}</span>
+      <span aria-hidden="true">&#8250;</span>
+    </button>
+  </div>
+</section>

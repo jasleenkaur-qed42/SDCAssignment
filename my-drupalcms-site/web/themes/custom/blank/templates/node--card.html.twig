@@ -1,0 +1,44 @@
+{#
+/**
+ * @file
+ * Renders a Card node with the blank:card component.
+ *
+ * Maps the Card content type's fields to the component props:
+ * - title       -> header
+ * - field_body  -> paragraph
+ * - field_image -> image (media image: file URL, alt, width, height)
+ *
+ * Available variables: see node.html.twig in core. Used here:
+ * - node: The node entity.
+ * - content: The node's rendered fields. Rendered (but not printed) so that
+ *   cache metadata of the referenced media and file bubbles up, and the card
+ *   updates when the image changes.
+ * - view_mode: The view mode, e.g. "full" or "teaser".
+ * - attributes: HTML attributes for the wrapper.
+ */
+#}
+{% set card = {
+  header: node.label,
+  heading_level: view_mode == 'full' ? 'h2' : 'h3',
+  paragraph: node.field_body.value,
+} %}
+
+{% set media_image = node.field_image.entity.field_media_image %}
+{% if media_image.entity %}
+  {% set image = {
+    src: file_url(media_image.entity.uri.value),
+    alt: media_image.alt,
+  } %}
+  {# The component schema requires integers; field values are strings. #}
+  {% if media_image.width and media_image.height %}
+    {% set image = image|merge({
+      width: media_image.width + 0,
+      height: media_image.height + 0,
+    }) %}
+  {% endif %}
+  {% set card = card|merge({ image: image }) %}
+{% endif %}
+
+<div{{ attributes.addClass('node--card', 'node--card--' ~ view_mode|clean_class) }}>
+  {% include 'blank:card' with card only %}
+</div>

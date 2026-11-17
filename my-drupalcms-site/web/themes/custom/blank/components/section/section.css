@@ -1,0 +1,122 @@
+.section {
+  --section-max-width: 72rem;
+  --section-gutter: clamp(1rem, 4vw, 2rem);
+  --section-padding-y: clamp(2.5rem, 6vw, 4.5rem);
+  --section-gap: clamp(1rem, 2.5vw, 1.75rem);
+  --section-bg: transparent;
+  --section-color: #1f1f2e;
+  --section-muted-color: #555;
+  --section-accent: #1a73e8;
+
+  padding: var(--section-padding-y) var(--section-gutter);
+  background-color: var(--section-bg);
+  color: var(--section-color);
+}
+
+.section--bg-muted {
+  --section-bg: #f5f4f2;
+}
+
+.section--bg-accent {
+  --section-bg: #1a73e8;
+  --section-color: #fff;
+  --section-muted-color: rgb(255 255 255 / 0.85);
+  --section-accent: #fff;
+}
+
+.section__inner {
+  max-width: var(--section-max-width);
+  margin-inline: auto;
+}
+
+.section__header {
+  max-width: 42rem;
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.section--align-center .section__header {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.section__heading {
+  margin: 0;
+  font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+}
+
+.section__heading::after {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 4px;
+  margin-top: 0.75rem;
+  border-radius: 2px;
+  background-color: var(--section-accent);
+}
+
+.section--align-center .section__heading::after {
+  margin-inline: auto;
+}
+
+.section__intro {
+  margin: 1rem 0 0;
+  font-size: 1.125rem;
+  line-height: 1.55;
+  color: var(--section-muted-color);
+}
+
+.section__grid {
+  display: grid;
+  gap: var(--section-gap);
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* Buttons in a 1-column section sit in a row, not stacked full width. */
+.section__grid--1:has(> .button) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.section--align-center .section__grid--1:has(> .button) {
+  justify-content: center;
+}
+
+/* Inverted buttons on the accent background. */
+.section--bg-accent .button {
+  --button-bg: #fff;
+  --button-bg-hover: #f1f1f1;
+  --button-color: #1a73e8;
+  --button-border-color: #fff;
+}
+
+.section--bg-accent .button--secondary {
+  --button-bg: transparent;
+  --button-color: #fff;
+}
+
+.section--bg-accent .button--secondary:hover {
+  background-color: #fff;
+  color: #1a73e8;
+}
+
+@media (min-width: 40rem) {
+  .section__grid--2,
+  .section__grid--3,
+  .section__grid--4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64rem) {
+  .section__grid--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .section__grid--4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

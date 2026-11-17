@@ -1,0 +1,42 @@
+{% stories banner with {
+  title: 'Components/Banner',
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: 'A banner component with a heading, subheading, and optional image.'
+      }
+    }
+  },
+  argTypes: {
+    heading: { control: 'text', description: 'Main heading for the banner (required).', table: { category: 'Content' } },
+    subheading: { control: 'text', description: 'Subheading for the banner (required).', table: { category: 'Content' } },
+    image: { control: 'object', description: 'Image object: { src, alt, width, height }.', table: { category: 'Media' } }
+  }
+} %}
+
+{% story default with {
+    name: 'Default',
+    args: {
+      heading: 'Get 25% off today only',
+      heading_level: 'h2',
+      subheading: 'Upgrade your setup with our best-selling gear.'
+    }
+  } %}
+    {% include 'blank:banner' with { heading, heading_level, subheading } only %}
+  {% endstory %}
+
+  {% story with_image with {
+    name: 'With image',
+    args: {
+      heading: 'New arrivals',
+      heading_level: 'h3',
+      subheading: 'Fresh picks for the season, hand-selected by our team.',
+      image: { src: 'https://placehold.co/640x360.png', alt: 'Placeholder product image', width: 640, height: 360 }
+    }
+  } %}
+    {% include 'blank:banner' with { heading, heading_level, subheading, image } only %}
+  {% endstory %}
+
+
+{% endstories %}

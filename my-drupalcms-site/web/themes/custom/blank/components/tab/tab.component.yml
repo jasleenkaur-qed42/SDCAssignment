@@ -1,0 +1,23 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Tab
+status: stable
+group: Content
+description: >-
+  A single tab panel. Place it inside the Tabs component's "Tabs" slot. The
+  title becomes the tab button label; the content slot is shown when the tab
+  is active.
+props:
+  type: object
+  required:
+    - title
+  properties:
+    title:
+      type: string
+      title: Tab title
+      description: Label shown on the tab button.
+      examples:
+        - Tab 1
+slots:
+  content:
+    title: Content
+    description: Content shown when this tab is active.

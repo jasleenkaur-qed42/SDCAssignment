@@ -1,0 +1,28 @@
+{% stories button with {
+  title: 'Components/Button',
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: 'A content card with a label, url and a variant. Rendered by Drupal from `blank:button`.'
+      }
+    }
+  },
+  argTypes: {
+    label: { control: 'text', description: 'Main title of the card (required).', table: { category: 'Content' } },
+    url: { control: 'text', description: 'HTML heading element for the title.', table: { category: 'Content' } },
+    variant: { control: 'text', description: 'Supporting text under the heading.', table: { category: 'Content' } },
+  }
+  } %}
+ {% story default with {
+    name: 'Default',
+    args: {
+      label: 'Default Button',
+      url: 'www.example.com',
+      variant: 'primary'
+    }
+  } %}
+    {% include 'blank:button' with { label, url, variant } only %}
+  {% endstory %}
+
+{% endstories %}

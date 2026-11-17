@@ -1,0 +1,61 @@
+{#
+/**
+ * @file
+ * Renders each row of the "banner" view through the blank:banner component.
+ *
+ * Views field templates receive `fields`, `row` and `view` — there is no
+ * `node` variable, so the entity is taken from the result row.
+ * Debug with {{ dump(node) }} (requires Twig debug enabled).
+ */
+#}
+{% set node = row._entity %}
+{% if node %}
+  {% set banner = {
+    heading: node.label,
+    heading_level: 'h2',
+    subheading: node.field_banner_body.value,
+  } %}
+
+  {% set media_image = node.field_banner_image.entity.field_media_image %}
+  {% if media_image.entity %}
+    {% set image = {
+      src: file_url(media_image.entity.uri.value),
+      alt: media_image.alt,
+    } %}
+    {# The component schema requires integers; field values are strings. #}
+    {% if media_image.width and media_image.height %}
+      {% set image = image|merge({
+        width: media_image.width + 0,
+        height: media_image.height + 0,
+      }) %}
+    {% endif %}
+    {% set banner = banner|merge({ image: image }) %}
+  {% endif %}
+
+  {% set buttons = [
+  {
+    label: 'Get Started',
+    url: 'https://www.drupal.org/project/cl_components',
+    variant: 'primary',
+  },
+  {
+    label: 'Explore components',
+    url: 'https://www.drupal.org/project/cl_components',
+    variant: 'secondary',
+  },
+] %}
+
+  {% set actions %}
+  {% for button in buttons %}
+    {% include 'blank:button' with {
+          label: button.label,
+          url: button.url,
+          variant: button.variant,
+        } only %}
+  {% endfor %}
+  {% endset %}
+  {% set banner = banner|merge({
+  actions: actions
+}) %}
+  {% include 'blank:banner' with banner only %}
+{% endif %}

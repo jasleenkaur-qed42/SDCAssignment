@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Section: optional heading/intro above a responsive grid of components.
+ */
+#}
+{% set columns = columns in ['1', '2', '3', '4'] ? columns : '1' %}
+{% set background = background in ['none', 'muted', 'accent'] ? background : 'none' %}
+{% set align = align == 'center' ? 'center' : 'start' %}
+<section{{ attributes.addClass('section', 'section--bg-' ~ background, 'section--align-' ~ align) }}>
+  <div class="section__inner">
+    {% if heading or intro %}
+      <header class="section__header">
+        {% if heading %}
+          <h2 class="section__heading">{{ heading }}</h2>
+        {% endif %}
+        {% if intro %}
+          <p class="section__intro">{{ intro }}</p>
+        {% endif %}
+      </header>
+    {% endif %}
+    <div class="section__grid section__grid--{{ columns }}">
+      {% block content %}
+        {{ content }}
+      {% endblock %}
+    </div>
+  </div>
+</section>

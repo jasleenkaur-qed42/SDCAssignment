@@ -1,0 +1,18 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Slider
+status: stable
+group: Content
+description: >-
+  A slider component with multiple slides. Use it to showcase images or content
+  in a carousel format. Add Slide components to the "Slides" slot.
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - core/once
+props:
+  type: object
+  properties: {}
+slots:
+  slides:
+    title: Slides
+    description: Slide components to display in the slider.

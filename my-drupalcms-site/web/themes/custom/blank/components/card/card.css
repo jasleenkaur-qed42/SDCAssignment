@@ -1,0 +1,45 @@
+.card {
+  --card-border-color: #ccc;
+  --card-radius: 20px;
+  --card-padding: 1rem;
+  --card-bg: #eee;
+  --card-text-color: #333;
+  --card-highlight-color: #1a73e8;
+
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--card-border-color);
+  border-radius: var(--card-radius);
+  background-color: var(--card-bg);
+  color: var(--card-text-color);
+}
+
+.card__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  background-color: #fff;
+}
+
+.card__content {
+  padding: var(--card-padding) var(--card-padding) calc(var(--card-padding) * 1.25);
+}
+
+.card__header {
+  margin: 0 0 0.5rem;
+  font-size: 1.5em;
+  line-height: 1.2;
+}
+
+.card__paragraph {
+  margin: 0;
+  font-size: 1em;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.card__paragraph--highlighted {
+  color: var(--card-highlight-color);
+}

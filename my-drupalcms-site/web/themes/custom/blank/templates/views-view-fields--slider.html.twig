@@ -1,0 +1,35 @@
+{#
+/**
+ * @file
+ * Renders each row of the slider view through the blank:slide component.
+ *
+ * field_slider_image is a core image field (target: file), so the file,
+ * alt, width and height are read directly from the field item.
+ */
+#}
+{% set node = row._entity %}
+
+{% if node %}
+  {% set image_item = node.field_slider_image %}
+
+  {% if image_item.entity %}
+    {% set slider = {
+      caption: node.label,
+      image: {
+        src: file_url(image_item.entity.uri.value),
+        alt: image_item.alt|default('')
+      }
+    } %}
+
+    {% if image_item.width and image_item.height %}
+      {% set slider = slider|merge({
+        image: slider.image|merge({
+          width: image_item.width + 0,
+          height: image_item.height + 0
+        })
+      }) %}
+    {% endif %}
+
+    {% include 'blank:slide' with slider only %}
+  {% endif %}
+{% endif %}

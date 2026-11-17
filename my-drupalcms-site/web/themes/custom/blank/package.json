@@ -1,0 +1,18 @@
+{
+  "name": "blank",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Blank theme – Storybook for single directory components, rendered by Drupal (drupal/storybook)",
+  "type": "module",
+  "scripts": {
+    "stories:compile": "ddev drush storybook:generate-all-stories --omit-server-url",
+    "storybook": "npm run stories:compile && storybook dev -p 6006",
+    "build-storybook": "npm run stories:compile && storybook build -o storybook-static"
+  },
+  "devDependencies": {
+    "@storybook/addon-a11y": "^10.6.5",
+    "@storybook/addon-docs": "^10.6.5",
+    "@storybook/server-webpack5": "^10.6.5",
+    "storybook": "^10.6.5"
+  }
+}

@@ -1,0 +1,60 @@
+{% stories tabs with {
+  title: 'Components/Tabs',
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: 'Accessible tabs. The "tabs" slot holds Tab components; a tab button is generated for each. Rendered by Drupal from `blank:tabs` and `blank:tab`.'
+      }
+    }
+  },
+  argTypes: {
+    style: { control: 'select', options: ['underline', 'pills'], description: 'Visual style of the tab buttons.', table: { category: 'Appearance' } },
+    tabs: { control: 'object', description: 'Tabs to render: [{ title: string, content: string }].', table: { category: 'Content' } }
+  }
+} %}
+
+{% story default with {
+    name: 'Underline',
+    args: {
+      style: 'underline',
+      tabs: [
+        { title: 'Overview', content: 'A short overview of the product and what it does.' },
+        { title: 'Features', content: 'Fast, accessible, and easy to edit in Canvas.' },
+        { title: 'Pricing', content: 'Free to start. Paid plans available for teams.' }
+      ]
+    }
+  } %}
+    {% embed 'blank:tabs' with { style, tabs } only %}
+      {% block tabs %}
+        {% for tab in tabs %}
+          {% embed 'blank:tab' with { title: tab.title, content: tab.content } only %}
+            {% block content %}<p>{{ content }}</p>{% endblock %}
+          {% endembed %}
+        {% endfor %}
+      {% endblock %}
+    {% endembed %}
+  {% endstory %}
+
+{% story pills with {
+    name: 'Pills',
+    args: {
+      style: 'pills',
+      tabs: [
+        { title: 'Monthly', content: 'Billed every month. Cancel anytime.' },
+        { title: 'Yearly', content: 'Billed once a year. Two months free.' }
+      ]
+    }
+  } %}
+    {% embed 'blank:tabs' with { style, tabs } only %}
+      {% block tabs %}
+        {% for tab in tabs %}
+          {% embed 'blank:tab' with { title: tab.title, content: tab.content } only %}
+            {% block content %}<p>{{ content }}</p>{% endblock %}
+          {% endembed %}
+        {% endfor %}
+      {% endblock %}
+    {% endembed %}
+  {% endstory %}
+
+{% endstories %}

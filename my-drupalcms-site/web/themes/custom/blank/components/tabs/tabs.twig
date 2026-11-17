@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * Tabs wrapper. tabs.js fills .tabs__list with one button per child .tab.
+ */
+#}
+{% set style = style|default('underline') %}
+<div{{ attributes.addClass('tabs', 'tabs--' ~ style) }}>
+  <div class="tabs__list" role="tablist" hidden></div>
+  <div class="tabs__panels">
+    {% block tabs %}
+      {{ tabs }}
+    {% endblock %}
+  </div>
+</div>

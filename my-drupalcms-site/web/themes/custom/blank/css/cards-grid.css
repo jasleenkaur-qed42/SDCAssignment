@@ -1,0 +1,18 @@
+/**
+ * @file
+ * Grid layout for the "Cards" view (views.view.cards).
+ *
+ * The view adds the "cards-grid" class to its wrapper; each row holds one
+ * Card node rendered with the blank:card component.
+ */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  gap: 1.5rem;
+  padding-block: 1.5rem;
+}
+
+.cards-grid .node--card,
+.cards-grid .card {
+  height: 100%;
+}

@@ -1,0 +1,70 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Section
+status: stable
+group: Layout
+description: >-
+  A page section with an optional heading and intro, laying out its content
+  in a responsive grid of 1 to 4 columns.
+props:
+  type: object
+  properties:
+    heading:
+      type: string
+      title: Heading
+      description: Optional section heading (rendered as h2).
+      examples:
+        - 'Section heading'
+    intro:
+      type: string
+      title: Intro
+      description: Optional short text under the heading.
+      examples:
+        - 'A short line introducing this section.'
+    columns:
+      type: string
+      title: Columns
+      description: Number of grid columns on wide screens. Collapses on small screens.
+      enum:
+        - '1'
+        - '2'
+        - '3'
+        - '4'
+      meta:enum:
+        '1': '1 column'
+        '2': '2 columns'
+        '3': '3 columns'
+        '4': '4 columns'
+      default: '1'
+      examples:
+        - '1'
+    background:
+      type: string
+      title: Background
+      description: Section background.
+      enum:
+        - none
+        - muted
+        - accent
+      meta:enum:
+        none: 'None'
+        muted: 'Muted'
+        accent: 'Accent'
+      default: none
+      examples:
+        - none
+    align:
+      type: string
+      title: Heading alignment
+      enum:
+        - start
+        - center
+      meta:enum:
+        start: 'Left'
+        center: 'Center'
+      default: start
+      examples:
+        - start
+slots:
+  content:
+    title: Content
+    description: Components laid out in the section grid.

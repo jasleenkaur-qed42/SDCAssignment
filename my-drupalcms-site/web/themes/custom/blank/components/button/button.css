@@ -1,0 +1,65 @@
+.button {
+  --button-bg: #1a73e8;
+  --button-bg-hover: #005fcc;
+  --button-color: #fff;
+  --button-border-color: var(--button-bg);
+  --button-radius: 999px;
+  --button-padding-y: 0.75rem;
+  --button-padding-x: 1.5rem;
+  --button-focus-ring: #005fcc;;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: var(--button-padding-y) var(--button-padding-x);
+  border: 2px solid var(--button-border-color);
+  border-radius: var(--button-radius);
+  background-color: var(--button-bg);
+  color: var(--button-color);
+  font: inherit;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.button:hover {
+  background-color: var(--button-bg-hover);
+  border-color: var(--button-bg-hover);
+  color: var(--button-color);
+}
+
+.button:focus-visible {
+  outline: 3px solid var(--button-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Secondary: outlined. */
+.button--secondary {
+  --button-bg: transparent;
+  --button-color: #1a73e8;
+  --button-border-color: #1a73e8;
+}
+
+.button--secondary:hover {
+  background-color: #1a73e8;
+  border-color: #1a73e8;
+  color: #fff;
+}
+
+/* Tertiary: text link style. */
+.button--tertiary {
+  --button-bg: transparent;
+  --button-color: #333;
+  --button-border-color: transparent;
+  --button-padding-x: 0.25rem;
+}
+
+.button--tertiary:hover {
+  background-color: transparent;
+  border-color: transparent;
+  color: #1a73e8;
+  text-decoration: underline;
+}

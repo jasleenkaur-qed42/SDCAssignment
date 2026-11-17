@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Slide component (used inside blank:slider).
+ *
+ * Available variables:
+ * - image: (object) { src, alt, width, height }.
+ * - caption: (string) Optional caption.
+ * - attributes: Drupal Attribute object for the wrapper element.
+ */
+#}
+<div {{ attributes.addClass('slide') }}>
+  {% if image.src %}
+    <img
+      class="slide__image"
+      src="{{ image.src }}"
+      alt="{{ image.alt|default('') }}"
+      {% if image.width %}width="{{ image.width }}"{% endif %}
+      {% if image.height %}height="{{ image.height }}"{% endif %}
+      loading="lazy"
+    >
+  {% endif %}
+  {% if caption %}
+    <p class="slide__caption">{{ caption }}</p>
+  {% endif %}
+</div>

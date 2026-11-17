@@ -1,0 +1,84 @@
+.banner {
+  --banner-bg: #1f1f2e;
+  --banner-text-color: #fff;
+  --banner-subheading-color: #d0d0dc;
+  --banner-accent-color: #1a73e8;
+  --banner-radius: 20px;
+  --banner-padding: clamp(1.5rem, 4vw, 3.5rem);
+  --banner-gap: clamp(1.5rem, 4vw, 3rem);
+
+  display: grid;
+  gap: var(--banner-gap);
+  align-items: center;
+  overflow: hidden;
+  padding: var(--banner-padding);
+  border-radius: var(--banner-radius);
+  background-color: var(--banner-bg);
+  color: var(--banner-text-color);
+}
+
+.banner__content {
+  max-width: 40rem;
+}
+
+.banner__heading {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.75rem, 1.2rem + 2.5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* Short accent bar under the heading. */
+.banner__heading::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 4px;
+  margin-top: 0.75rem;
+  border-radius: 2px;
+  background-color: var(--banner-accent-color);
+}
+
+.banner__subheading {
+  margin: 0;
+  font-size: clamp(1rem, 0.95rem + 0.4vw, 1.25rem);
+  line-height: 1.5;
+  color: var(--banner-subheading-color);
+}
+
+.banner__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+.banner__actions:empty {
+  display: none;
+}
+
+/* Secondary buttons need light outlines on the dark banner. */
+.banner__actions .button--secondary {
+  --button-color: #fff;
+  --button-border-color: #fff;
+}
+
+.banner__media {
+  overflow: hidden;
+  border-radius: calc(var(--banner-radius) / 2);
+}
+
+.banner__image {
+  display: block;
+  width: 100%;
+  height: 24rem;
+  object-fit: cover;
+}
+
+/* Side-by-side layout on wider screens when an image is present. */
+@media (min-width: 48rem) {
+  .banner--with-image {
+    grid-template-columns: 1fr 1.2fr;
+  }
+}

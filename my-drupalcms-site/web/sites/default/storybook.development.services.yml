@@ -1,0 +1,13 @@
+# Local-only container overrides for Storybook (drupal/storybook).
+# Loaded from settings.local.php. NEVER load this in production.
+parameters:
+  storybook.development: true
+  cors.config:
+    enabled: true
+    allowedHeaders: ['*']
+    allowedMethods: ['*']
+    allowedOrigins: ['http://localhost:6006', 'http://127.0.0.1:6006']
+    allowedOriginsPatterns: []
+    exposedHeaders: false
+    maxAge: false
+    supportsCredentials: true

@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * Wraps the slider view rows in the blank:slider component.
+ *
+ * Each row is rendered by views-view-fields--slider.html.twig as a
+ * blank:slide, and is placed in the slider's "slides" slot.
+ */
+#}
+{% embed 'blank:slider' %}
+  {% block slides %}
+    {% for row in rows %}
+      {{ row.content }}
+    {% endfor %}
+  {% endblock %}
+{% endembed %}

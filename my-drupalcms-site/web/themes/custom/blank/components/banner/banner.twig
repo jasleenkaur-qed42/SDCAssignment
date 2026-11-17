@@ -1,0 +1,21 @@
+{% set heading_tag = heading_level in ['h1', 'h2', 'h3'] ? heading_level : 'h1' %}
+{% set has_image = image.src is not empty %}
+<section{{ attributes.addClass('banner', has_image ? 'banner--with-image') }}>
+  <div class="banner__content">
+    <{{ heading_tag }} class="banner__heading">{{ heading }}</{{ heading_tag }}>
+    {% if subheading %}
+      <p class="banner__subheading">{{ subheading }}</p>
+    {% endif %}
+    {# Always output the wrapper so Canvas can find the slot; CSS hides it when empty. #}
+    <div class="banner__actions">
+      {%block actions %}
+        {{actions }}
+      {%endblock%}
+    </div>
+  </div>
+  {% if has_image %}
+    <div class="banner__media">
+      <img class="banner__image" src="{{ image.src }}" alt="{{ image.alt }}"{% if image.width %} width="{{ image.width }}"{% endif %}{% if image.height %} height="{{ image.height }}"{% endif %}>
+    </div>
+  {% endif %}
+</section>

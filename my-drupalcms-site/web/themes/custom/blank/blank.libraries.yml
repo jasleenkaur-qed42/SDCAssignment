@@ -1,0 +1,4 @@
+global:
+  css:
+    theme:
+      css/cards-grid.css: {}

@@ -1,0 +1,31 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Tabs
+status: stable
+group: Content
+description: >-
+  Accessible tabbed content. Add Tab components to the "Tabs" slot; a tab
+  button is generated for each one.
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - core/once
+props:
+  type: object
+  properties:
+    style:
+      type: string
+      title: Style
+      description: Visual style of the tab buttons.
+      enum:
+        - underline
+        - pills
+      meta:enum:
+        underline: Underline
+        pills: Pills
+      default: underline
+      examples:
+        - underline
+slots:
+  tabs:
+    title: Tabs
+    description: Tab components, one per tab.

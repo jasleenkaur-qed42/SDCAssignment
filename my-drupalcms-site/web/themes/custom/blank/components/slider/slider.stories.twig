@@ -1,0 +1,39 @@
+{#
+  Storybook stories for the Slider component (drupal/storybook module).
+  Compile to slider.stories.json with: ddev drush storybook:generate-all-stories
+#}
+{% stories slider with {
+  title: 'Components/Slider',
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: 'A slider with a "slides" slot holding Slide components. Rendered by Drupal from `blank:slider` and `blank:slide`.'
+      }
+    }
+  },
+  argTypes: {
+    slides: { control: 'object', description: 'Slides to render: [{ image: { src, alt, width, height }, caption }].', table: { category: 'Content' } }
+  }
+} %}
+
+  {% story default with {
+    name: 'Default',
+    args: {
+      slides: [
+        { image: { src: 'https://placehold.co/640x360.png', alt: 'Placeholder slide image', width: 640, height: 360 }, caption: 'Caption for Slide 1' },
+        { image: { src: 'https://placehold.co/640x360.png', alt: 'Placeholder slide image', width: 640, height: 360 }, caption: 'Caption for Slide 2' },
+        { image: { src: 'https://placehold.co/640x360.png', alt: 'Placeholder slide image', width: 640, height: 360 }, caption: 'Caption for Slide 3' }
+      ]
+    }
+  } %}
+    {% embed 'blank:slider' with { slides } only %}
+      {% block slides %}
+        {% for slide in slides %}
+          {% include 'blank:slide' with { image: slide.image, caption: slide.caption } only %}
+        {% endfor %}
+      {% endblock %}
+    {% endembed %}
+  {% endstory %}
+
+{% endstories %}

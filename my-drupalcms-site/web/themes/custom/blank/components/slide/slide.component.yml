@@ -1,0 +1,27 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Slide
+status: stable
+group: Content
+description: >-
+  A single slide with an image and an optional caption. Place it inside the
+  Slider component's "Slides" slot.
+props:
+  type: object
+  required:
+    - image
+  properties:
+    image:
+      $ref: json-schema-definitions://canvas.module/image
+      title: Image
+      description: Image shown in the slide. Always provide alt text unless decorative.
+      examples:
+        - src: 'https://placehold.co/640x360.png'
+          alt: 'Placeholder slide image'
+          width: 640
+          height: 360
+    caption:
+      type: string
+      title: Caption
+      description: Optional caption shown under the image.
+      examples:
+        - 'Caption for the slide'

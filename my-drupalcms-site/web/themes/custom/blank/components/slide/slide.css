@@ -1,0 +1,28 @@
+.slide {
+  --slide-caption-bg: rgba(0, 0, 0, 0.6);
+  --slide-caption-color: #fff;
+  --slide-caption-padding: 0.75rem 1rem;
+
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+}
+
+.slide__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.slide__caption {
+  position: absolute;
+  inset: auto 0 0 0;
+  margin: 0;
+  padding: var(--slide-caption-padding);
+  background: var(--slide-caption-bg);
+  color: var(--slide-caption-color);
+  font-size: 1rem;
+  line-height: 1.4;
+}

@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * Tab panel. The heading is the no-JS fallback; tabs.js hides it and builds
+ * a tab button from data-tab-title instead.
+ */
+#}
+<section{{ attributes.addClass('tab').setAttribute('data-tab-title', title) }}>
+  <h3 class="tab__heading">{{ title }}</h3>
+  <div class="tab__content">
+    {% block content %}
+      {{ content }}
+    {% endblock %}
+  </div>
+</section>

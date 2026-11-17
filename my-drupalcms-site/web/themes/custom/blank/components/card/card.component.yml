@@ -1,0 +1,55 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Card
+status: stable
+group: Content
+description: >-
+  A content card with an optional image, a heading and a short paragraph.
+  Use it in grids or lists to promote an offer, article or product. Clicking
+  the paragraph toggles a highlighted state (see card.js).
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - core/once
+props:
+  type: object
+  required:
+    - header
+  properties:
+    header:
+      type: string
+      title: Heading
+      description: Main title of the card. Keep it short (one line where possible).
+      examples:
+        - 'Card Title'
+    heading_level:
+      type: string
+      title: Heading level
+      description: >-
+        HTML heading element for the title. Pick the level that fits the page
+        outline (e.g. h3 when cards sit under an h2 section title).
+      enum:
+        - h2
+        - h3
+        - h4
+      meta:enum:
+        h2: 'Heading 2'
+        h3: 'Heading 3'
+        h4: 'Heading 4'
+      default: h2
+      examples:
+        - h2
+    paragraph:
+      type: string
+      title: Paragraph
+      description: Supporting text shown under the heading. Plain text only.
+      examples:
+        - 'This is a short description providing a summary or context for the card content.'
+    image:
+      $ref: json-schema-definitions://canvas.module/image
+      title: Image
+      description: Optional image shown above the content. Always provide alt text unless decorative.
+      examples:
+        - src: 'https://placehold.co/640x360.png'
+          alt: 'Placeholder product image'
+          width: 640
+          height: 360
